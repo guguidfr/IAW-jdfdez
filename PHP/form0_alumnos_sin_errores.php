@@ -10,7 +10,7 @@
 
 <?php
 $nameErr = $emailErr = $genderErr = $websiteErr = $monthErr = $dayErr = "";
-$nombre = $email = $genero = $comentario = $mes = $dia = $web = "";
+$nombre = $email = $genero = $comentario = $mes = $dia = $website = "";
 function test_input($datos){
   $datos=trim($datos);
   $datos=stripslashes($datos);
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $monthErr = "El mes es obligatorio";
   } else {
     if (is_numeric(test_input($_POST["mes"]))) {
-      if ((test_input($_POST["mes"]) < 1) && (test_input($_POST["mes"]) > 12)) {
+      if ((test_input($_POST["mes"]) > 0) && (test_input($_POST["mes"]) < 13)) {
         $mes = test_input($meses[$_POST["mes"]-1]);
       } else {
         $monthErr = "El número del mes debe de ser entre 1 y 12";
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $dayErr = "El día es obligatorio";
   } else {
     if (is_numeric(test_input($_POST["dia"]))) {
-      if ((test_input($_POST["dia"] < 1)) && (test_input($_POST["dia"]) > 7)) {
+      if ((test_input($_POST["dia"] > 0)) && (test_input($_POST["dia"]) < 8)) {
         $dia = test_input($dias[$_POST["dia"]-1]);
       } else {
         $dayErr = "El día debe de ser entre 1 y 7";
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   echo "<br>";
   echo "Email: ".$email;
   echo "<br>";
-  echo "Web: ".$web;
+  echo "Web: ".$website;
   echo "<br>";
   echo "Comentario: ".$comentario;
   echo "<br>";

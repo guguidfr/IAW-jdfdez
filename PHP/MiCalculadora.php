@@ -3,15 +3,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$num1=$_POST['n1'];
 	$num2=$_POST['n2'];
 	$oprnd=$_POST['sub'];
-	if($oprnd=="+"){
-		$ans=$num1+$num2;
-	}else if($oprnd=="-"){
-		$ans=$num1-$num2;
-	}else if($oprnd=="x"){
-		$ans=$num1*$num2;
-	}else if($oprnd=="/"){
-		$ans=$num1/$num2;
+	if(is_numeric($num1) && is_numeric($num2)){
+		if($oprnd=="+"){
+			$ans=$num1+$num2;
+		}else if($oprnd=="-"){
+			$ans=$num1-$num2;
+		}else if($oprnd=="x"){
+			$ans=$num1*$num2;
+		}else if($oprnd=="/"){
+			if($num2 == 0){
+				$ans = "ERROR - NO SE PUEDE DIVIDIR ENTRE 0";
+			}else{
+				$ans=$num1/$num2;
+			}
+			
+		}
+	}else{
+		$ans = "ERROR - DEBES DE INTRODUCIR NÚMEROS";
 	}
+	
 }else{
 	$ans="";
 }?>
